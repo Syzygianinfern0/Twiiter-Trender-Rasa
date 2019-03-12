@@ -23,6 +23,10 @@ class ActionGetTrends(Action):
         auth.set_access_token(access_token, access_token_secret)
         api = tweepy.API(auth)
         trends1 = api.trends_place(1)
-        dispatcher.utter_message(trends1)
+        data = trends1[0] 
+        trends = data['trends']
+        names = [trend['name'] for trend in trends]
+        trendsName = ' '.join(names)
+        dispatcher.utter_message(trendsName)
 
         return [SlotSet("location", city)]
