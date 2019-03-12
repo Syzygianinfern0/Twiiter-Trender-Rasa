@@ -30,3 +30,4 @@ class ActionGetTrends(Action):
         dispatcher.utter_message(trendsName)
 
         return [SlotSet("location", city)]
+        

@@ -15,16 +15,17 @@ from rasa_core.utils import EndpointConfig
 logger = logging.getLogger(__name__)
 
 
-def run_trend_online(interpreter,
-                          domain_file="domain.yml",
-                          training_data_file='data/stories.md'):
-    action_endpoint = EndpointConfig(url="http://localhost:5055/webhook")						  
+def run_trender_online(interpreter,
+                       domain_file="domain.yml",
+                       training_data_file='data/stories.md'):
+    action_endpoint = EndpointConfig(url="http://localhost:5055/webhook")
     agent = Agent(domain_file,
-                  policies=[MemoizationPolicy(max_history=2), KerasPolicy(max_history=3, epochs=3, batch_size=50)],
+                  policies=[MemoizationPolicy(max_history=2), KerasPolicy(
+                      max_history=3, epochs=3, batch_size=50)],
                   interpreter=interpreter,
-				  action_endpoint=action_endpoint)
-    				  
-    data = agent.load_data(training_data_file)			   
+                  action_endpoint=action_endpoint)
+
+    data = agent.load_data(training_data_file)
     agent.train(data)
     interactive.run_interactive_learning(agent, training_data_file)
     return agent
@@ -32,5 +33,11 @@ def run_trend_online(interpreter,
 
 if __name__ == '__main__':
     logging.basicConfig(level="INFO")
-    nlu_interpreter = RasaNLUInterpreter('./models/nlu/default/trendnlu')
-    run_trend_online(nlu_interpreter)
+    nlu_interpreter = RasaNLUInterpreter(
+        './models/nlu/default/trendernlu')  # <<<<<<<<<<
+    run_trender_online(nlu_interpreter)
+    agent = Agent("domain.yml",
+                  policies=[MemoizationPolicy(), KerasPolicy()])
+
+    agent.visualize("data/stories.md",
+                    output_file="graph.html", max_history=2)
