@@ -9,6 +9,7 @@
 - Thank You. Bye
 - Bye
 - Ok Bye
+- Thank You
 
 ## intent:greet
 - hey
@@ -19,6 +20,7 @@
 - hey there
 - howdy
 - sup bot
+- hi
 - hi
 - hi
 - hi
@@ -45,3 +47,5 @@
 - What is trending?
 - What is trending?
 - In [Austria](location)
+- What is trending?
+- in [Chennai](location)

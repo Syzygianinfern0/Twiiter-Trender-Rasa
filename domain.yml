@@ -2,14 +2,14 @@
 ---
 actions:
 - utter_goodbye
-- utter_ask_location
 - utter_greet
 - action_get_trends
+- utter_ask_location
 entities:
 - location
 intents:
-- goodbye
 - trend_query_loc
+- goodbye
 - greet
 slots:
   location:

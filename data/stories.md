@@ -19,22 +19,15 @@
     - slot{"location": "India"}
 * goodbye
     - utter_goodbye
-
-## Generated Story 2947128366206392390
+## Generated Story -2699690936953661521
 * greet
     - utter_greet
 * trend_query_loc
     - utter_ask_location
-* trend_query_loc
-    - utter_ask_location
-* trend_query_loc
-    - utter_ask_location
-* trend_query_loc
-    - utter_ask_location
-* trend_query_loc{"location": "Austria"}
-    - slot{"location": "Austria"}
+* trend_query_loc{"location": "Chennai"}
+    - slot{"location": "Chennai"}
     - action_get_trends
-    - slot{"location": "Austria"}
+    - slot{"location": "Chennai"}
 * goodbye
     - utter_goodbye
 
