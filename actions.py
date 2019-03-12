@@ -29,17 +29,20 @@ class ActionGetTrends(Action):
 
         url_for_woeid = 'https://www.metaweather.com/api/location/search/?query=' + city
 
+        try:
+            request = json.loads(requests.get(url_for_woeid).text)
+            woeid = request[0]
+            woeid = woeid['woeid']
 
-        request = json.loads(requests.get(url_for_woeid).text)
-        woeid = request[0]
-        woeid = woeid['woeid']
+            trends1 = api.trends_place(woeid)
+            data = trends1[0]
+            trends = data['trends']
+            names = [trend['name'] for trend in trends]
+            top_5_names = names[0:4]
+            trendsName = ' '.join(top_5_names)
+            dispatcher.utter_message(trendsName)
 
-        trends1 = api.trends_place(woeid)
-        data = trends1[0]
-        trends = data['trends']
-        names = [trend['name'] for trend in trends]
-        top_5_names = names[0:4]
-        trendsName = ' '.join(top_5_names)
-        dispatcher.utter_message(trendsName)
+        except tweepy.error.TweepError as err:
+            dispatcher.utter_message("Sorry, I don't have access to that.")
 
         return [SlotSet("location", city)]
