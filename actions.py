@@ -6,28 +6,23 @@ from rasa_core_sdk import Action
 from rasa_core_sdk.events import SlotSet
 import requests, json 
 
-class ActionGetWeather(Action):
+import tweepy
+
+consumer_key = 'WPKbUCLAEuYlf1gEPavI0YQmJ'
+consumer_secret = 'Y18jXjayFQmpeeVaiZSyKBwQSUjCI0rmP3O8fvEE5N84Lop3Td'
+access_token = '3438102134-1VH2PeR2uijEOxg54YBbULyRJHwKYp8aW8BW4tH'
+access_token_secret = 'YrlQdykFPeybRP92qgla3ZZ8qnJDIgaFKgVfdTEu5qjiZ'
+
+class ActionGetTrends(Action):
     def name(self):
-        return "action_get_weather"
+        return "action_get_trends"
     
     def run(self, dispatcher, tracker, domain):
-        city = tracker.get_slot('city')
-        api_key = "374b7fbffe367b0c2974e656fdeab696"
-        
-        skeleton = "https://api.openweathermap.org/data/2.5/weather?"
-        complete_url = skeleton + "q=" + city + "&APPID=" + api_key
-        
-        response = requests.get(complete_url)
+        city = tracker.get_slot('location')
+        auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+        auth.set_access_token(access_token, access_token_secret)
+        api = tweepy.API(auth)
+        trends1 = api.trends_place(1)
+        dispatcher.utter_message(trends1)
 
-        data = response.json()
-        
-        x=data['main']
-        temp = round(x['temp'] - 273.15, 2)
-        place = data["name"]
-        x = data['weather']
-        desc = x[0]['main']
-
-        weather_data = "It's {}*C currently in {}. The weather can be described as {}".format(temp, place, desc)
-        dispatcher.utter_message(weather_data)
-
-        return [SlotSet("city", city)]
+        return [SlotSet("location", city)]

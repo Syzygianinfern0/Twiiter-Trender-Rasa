@@ -7,10 +7,10 @@ def train_nlu(data, configs, model_dir):
 	training_data = load_data(data)
 	trainer = Trainer(config.load(configs))
 	trainer.train(training_data)
-	model_directory = trainer.persist(model_dir, fixed_model_name = 'weathernlu')
+	model_directory = trainer.persist(model_dir, fixed_model_name = 'trendnlu')
 	
 def run_nlu():
-	interpreter = Interpreter.load('./models/nlu/default/weathernlu')
+	interpreter = Interpreter.load('./models/nlu/default/trendnlu')
 	print(interpreter.parse(input("\n\tSay something to test : ")))
 	
 if __name__ == '__main__':
