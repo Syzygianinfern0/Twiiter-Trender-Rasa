@@ -5,7 +5,7 @@ from rasa_core.utils import EndpointConfig
 from rasa_core.agent import Agent
 
 
-nlu_interpreter = RasaNLUInterpreter('./models/nlu/default/weathernlu')
+nlu_interpreter = RasaNLUInterpreter('./models/nlu/default/trendnlu')
 action_endpoint = EndpointConfig(url="http://localhost:5055/webhook")
 agent = Agent.load('./models/dialogue', interpreter = nlu_interpreter, action_endpoint = action_endpoint)
 

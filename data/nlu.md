@@ -3,6 +3,8 @@
 - goodbye
 - see you around
 - see you later
+- Bye
+- Thank You. Bye
 
 ## intent:greet
 - hey
@@ -13,6 +15,8 @@
 - hey there
 - howdy
 - sup bot
+- hi
+- hi
 
 ## intent:trend_query_loc
 - What are the trends at [Chennai](location)
@@ -20,5 +24,6 @@
 - What's trending?
 - Give me trends at my place.
 - Trending news please at [Australia](location)
-
-
+- What is trending?
+- In [India](location)
+- What is Trending in [India](location)?

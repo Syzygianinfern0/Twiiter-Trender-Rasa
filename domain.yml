@@ -1,21 +1,19 @@
+%YAML 1.1
+---
 actions:
-- utter_greet
-- utter_ask_location
 - utter_goodbye
 - action_get_trends
-
+- utter_greet
+- utter_ask_location
 entities:
 - location
-
 intents:
 - goodbye
 - trend_query_loc
 - greet
-
 slots:
   location:
     type: text
-    
 templates:
   utter_ask_location:
   - text: In which location?
